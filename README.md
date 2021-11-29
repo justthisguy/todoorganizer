@@ -1,24 +1,13 @@
-# README
+# todo organizer
+===========
 
-This README would normally document whatever steps are necessary to get the
-application up and running.
 
-Things you may want to cover:
+### Build From Scratch
 
-* Ruby version
+```
 
-* System dependencies
+rails new todoorganizer -d postgresql --webpack=react --skip-action-cable --skip-action-mailbox --skip-action-text --skip-bundle --skip-coffee --skip-sprockets --skip-system-test --skip-turbolinks --skip-test
+rails generate rspec:install
 
-* Configuration
 
-* Database creation
-
-* Database initialization
-
-* How to run the test suite
-
-* Services (job queues, cache servers, search engines, etc.)
-
-* Deployment instructions
-
-* ...
+```
