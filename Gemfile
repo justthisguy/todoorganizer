@@ -22,11 +22,11 @@ group :development do
   gem 'active_record_query_trace'
   # gem 'better_errors'
   gem 'binding_of_caller'
-  gem 'rack-mini-profiler', '~> 2.0'
-  gem 'listen', '~> 3.3'
+  gem 'rack-mini-profiler', '~> 2.3'
+  gem 'listen', '~> 3.7'
   gem 'spring'
   gem 'spring-watcher-listen'
-  gem 'web-console', '>= 4.1.0'
+  gem 'web-console', '>= 4.2'
 end
 
 group :development, :test do
@@ -47,7 +47,7 @@ group :development, :test do
   gem 'pry-stack_explorer'
   gem 'spring-commands-rspec'
   gem 'spring-commands-cucumber'
-  gem 'rspec-rails', '~> 3.7'
+  gem 'rspec-rails', '~> 5.0.2'
 end
 
 group :test do
