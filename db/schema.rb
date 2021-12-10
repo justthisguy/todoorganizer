@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2021_12_05_012443) do
+ActiveRecord::Schema.define(version: 2021_12_10_025544) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -34,4 +34,55 @@ ActiveRecord::Schema.define(version: 2021_12_05_012443) do
     t.datetime "updated_at", precision: 6, null: false
   end
 
+  create_table "wunderfolders", force: :cascade do |t|
+    t.string "title"
+    t.string "directory_path"
+    t.datetime "createdAt"
+    t.datetime "updatedAt"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+  end
+
+  create_table "wunderlists", force: :cascade do |t|
+    t.bigint "wunderfolder_id", null: false
+    t.string "original_id"
+    t.string "title"
+    t.string "tasks", default: [], array: true
+    t.string "directory_path"
+    t.string "text_file_path"
+    t.string "html_file_path"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["wunderfolder_id"], name: "index_wunderlists_on_wunderfolder_id"
+  end
+
+  create_table "wundersubtasks", force: :cascade do |t|
+    t.bigint "wundertask_id", null: false
+    t.string "title"
+    t.boolean "completed"
+    t.datetime "completedAt"
+    t.datetime "createdAt"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["wundertask_id"], name: "index_wundersubtasks_on_wundertask_id"
+  end
+
+  create_table "wundertasks", force: :cascade do |t|
+    t.bigint "wunderlist_id", null: false
+    t.string "original_id"
+    t.string "title"
+    t.boolean "completed"
+    t.string "starred"
+    t.string "boolean"
+    t.jsonb "notes", default: []
+    t.datetime "createdAt"
+    t.datetime "completedAt"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["wunderlist_id"], name: "index_wundertasks_on_wunderlist_id"
+  end
+
+  add_foreign_key "wunderlists", "wunderfolders"
+  add_foreign_key "wundersubtasks", "wundertasks"
+  add_foreign_key "wundertasks", "wunderlists"
 end

@@ -22,4 +22,15 @@ rails webpacker:install
 rails generate rspec:install
 
 
+git remote add origin git@github.com:justthisguy/todoorganizer.git
+
+
+rails g model task
+
+rails g model wundersubtask
+rails g model wundertask
+rails g model wunderlist
+rails g model wunderfolder
+
+
 ```
