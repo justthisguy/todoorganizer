@@ -6,8 +6,7 @@ class CreateWundertasks < ActiveRecord::Migration[6.1]
       t.string   :original_id
       t.string   :title
       t.boolean  :completed
-      t.string   :starred
-      t.string   :boolean
+      t.boolean  :starred
       t.jsonb    :notes, default: []
       t.datetime :createdAt
       t.datetime :completedAt

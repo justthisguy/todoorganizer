@@ -47,7 +47,6 @@ ActiveRecord::Schema.define(version: 2021_12_10_025544) do
     t.bigint "wunderfolder_id", null: false
     t.string "original_id"
     t.string "title"
-    t.string "tasks", default: [], array: true
     t.string "directory_path"
     t.string "text_file_path"
     t.string "html_file_path"
@@ -72,8 +71,7 @@ ActiveRecord::Schema.define(version: 2021_12_10_025544) do
     t.string "original_id"
     t.string "title"
     t.boolean "completed"
-    t.string "starred"
-    t.string "boolean"
+    t.boolean "starred"
     t.jsonb "notes", default: []
     t.datetime "createdAt"
     t.datetime "completedAt"

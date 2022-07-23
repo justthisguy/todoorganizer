@@ -5,7 +5,6 @@ class CreateWunderlists < ActiveRecord::Migration[6.1]
 
       t.string :original_id
       t.string :title
-      t.string :tasks, array: true, default: []
       t.string :directory_path
       t.string :text_file_path
       t.string :html_file_path
