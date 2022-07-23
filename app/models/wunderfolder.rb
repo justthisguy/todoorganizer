@@ -16,6 +16,8 @@ class Wunderfolder < ApplicationRecord
   # is contained as array of the containing object.
   ###
   def self.find_or_create source
+    return nil if source.nil?
+
     folder = Wunderfolder.where( title: source[:title] ).first
     if folder.nil?
       folder =  Wunderfolder.new

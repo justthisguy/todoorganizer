@@ -35,6 +35,16 @@ RSpec.describe Wunderfolder, type: :model do
   describe 'find_or_create' do
     let(:hash_folder) { {"title": "the title", "directoryPath": "the directory path", "createdAt": "2016-12-19T18:15:51.952Z", "updatedAt": "2019-08-18T03:48:55.746Z"} }
 
+    context 'input is nil' do
+      it 'returns nil' do
+        folder         = Wunderfolder.find_or_create nil
+        count_final    = Wunderfolder.count
+
+        expect(count_final).to eq( 0 )
+        expect(folder     ).to be_nil
+      end
+    end
+
     context 'there are none' do
       it 'creates one' do
         count_original = Wunderfolder.count
