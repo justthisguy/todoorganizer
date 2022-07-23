@@ -9,17 +9,22 @@ class Wunderfolder < ApplicationRecord
     self.save
   end
 
-  # def self.find_or_create source
-  #   folder = Wunderfolder.where( title: source['title'] )
-  #   if folder.empty?
-  #     folder =  Wunderfolder.new
-  #     folder.from_hash source
-  #   end
-  #   folder
-  # end
+
+  ###
+  # a quirk of the Wunderlist file format is that lists actually have
+  # references to their folder if they are in a folder. Everything else
+  # is contained as array of the containing object.
+  ###
+  def self.find_or_create source
+    folder = Wunderfolder.where( title: source['title'] ).first
+    if folder.nil?
+      folder =  Wunderfolder.new
+      folder.from_hash source
+    end
+    # binding.pry
+    folder
+  end
 end
-
-
 
 # hf1 = {"title"=>"TODO", "directoryPath"=>"TODO", "createdAt"=>"2016-12-19T18:15:51.952Z", "updatedAt"=>"2019-08-18T03:48:55.746Z"}
 # hf2 = {"title"=>"test3", "directoryPath"=>"test3", "createdAt"=>"2016-12-19T18:15:51.952Z", "updatedAt"=>"2019-08-18T03:48:55.746Z"}
