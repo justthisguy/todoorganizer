@@ -6,7 +6,7 @@ RSpec.describe Wunderfolder, type: :model do
   end
 
   describe 'from hash' do
-    let(:hash_folder) { {"title"=>"the title", "directoryPath"=>"the directory path", "createdAt"=>"2016-12-19T18:15:51.952Z", "updatedAt"=>"2019-08-18T03:48:55.746Z"} }
+    let(:hash_folder) { {"title": "the title", "directoryPath": "the directory path", "createdAt": "2016-12-19T18:15:51.952Z", "updatedAt": "2019-08-18T03:48:55.746Z"} }
     let(:folder) { Wunderfolder.new }
 
     context 'is not completed' do
@@ -15,25 +15,25 @@ RSpec.describe Wunderfolder, type: :model do
       end
 
       it 'sets title to the title' do
-        expect(folder.title).to eq(hash_folder["title"])
+        expect(folder.title).to eq(hash_folder[:title])
       end
 
       it 'sets directory_path to the directory_path' do
-        expect(folder.directory_path).to eq(hash_folder["directoryPath"])
+        expect(folder.directory_path).to eq(hash_folder[:directoryPath])
       end
 
       it 'sets createdAt to the createdAt' do
-        expect(folder.createdAt).to eq(hash_folder["createdAt"])
+        expect(folder.createdAt).to eq(hash_folder[:createdAt])
       end
 
       it 'sets completedAt to the updatedAt' do
-        expect(folder.updatedAt).to eq(hash_folder["updatedAt"])
+        expect(folder.updatedAt).to eq(hash_folder[:updatedAt])
       end
     end
   end
 
   describe 'find_or_create' do
-    let(:hash_folder) { {"title"=>"the title", "directoryPath"=>"the directory path", "createdAt"=>"2016-12-19T18:15:51.952Z", "updatedAt"=>"2019-08-18T03:48:55.746Z"} }
+    let(:hash_folder) { {"title": "the title", "directoryPath": "the directory path", "createdAt": "2016-12-19T18:15:51.952Z", "updatedAt": "2019-08-18T03:48:55.746Z"} }
 
     context 'there are none' do
       it 'creates one' do
@@ -44,7 +44,7 @@ RSpec.describe Wunderfolder, type: :model do
         expect(count_original).to eq( 0 )
         expect(count_final   ).to eq( 1 )
         expect(folder.class  ).to eq( Wunderfolder )
-        expect(folder.title  ).to eq(hash_folder["title"])
+        expect(folder.title  ).to eq(hash_folder[:title])
       end
     end
 
@@ -60,7 +60,7 @@ RSpec.describe Wunderfolder, type: :model do
         expect(count_middle  ).to eq( 1 )
         expect(count_final   ).to eq( 1 )
         expect(folder2.class ).to eq( Wunderfolder )
-        expect(folder2.title ).to eq(hash_folder["title"])
+        expect(folder2.title ).to eq(hash_folder[:title])
       end
     end
   end
