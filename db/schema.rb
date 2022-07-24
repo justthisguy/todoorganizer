@@ -45,11 +45,12 @@ ActiveRecord::Schema.define(version: 2021_12_10_025544) do
 
   create_table "wunderlists", force: :cascade do |t|
     t.bigint "wunderfolder_id", null: false
-    t.string "original_id"
+    t.integer "original_id"
     t.string "title"
     t.string "directory_path"
     t.string "text_file_path"
     t.string "html_file_path"
+    t.datetime "createdAt"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
     t.index ["wunderfolder_id"], name: "index_wunderlists_on_wunderfolder_id"
