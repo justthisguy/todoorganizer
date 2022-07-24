@@ -68,6 +68,39 @@ RSpec.describe Wundertask, type: :model do
     end
   end
 
+  describe 'note_from_hash' do
+    let(:task) { FactoryBot.create(:wundertask) }
+
+    context 'note is empty' do
+      let(:note_hash) { {} }
+      it 'returns false' do
+        result = task.note_from_hash note_hash
+        expect(result).to be false
+      end
+    end
+
+    context 'content is empty' do
+      let(:note_hash) { { "content": "" } }
+      it 'returns false' do
+        result = task.note_from_hash note_hash
+        expect(result).to be false
+      end
+    end
+
+    context 'it is a good note' do
+      let(:note_hash) { { "content": "this is the note" } }
+      it 'creates a new note' do
+        result = task.note_from_hash note_hash
+        expect(task.notes.count).to eq( 1 )
+      end
+
+      it 'the new note contains the right string' do
+        result = task.note_from_hash note_hash
+        expect(task.notes.first).to eq( note_hash[:content] )
+      end
+    end
+  end
+
 
 
 

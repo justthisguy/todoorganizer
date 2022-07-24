@@ -23,7 +23,9 @@ class Wundertask < ApplicationRecord
   end
 
   def note_from_hash note_hash
-
+    return false if note_hash.empty?
+    return false if note_hash[:content].empty?
+    self.notes << note_hash[:content]
   end
 
 
