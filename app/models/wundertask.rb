@@ -15,8 +15,17 @@ class Wundertask < ApplicationRecord
   end
 
   def handle_notes notes_array
+    return if notes_array.empty?
+
+    notes_array.each do |note_hash|
+      note_from_hash note_hash
+    end
+  end
+
+  def note_from_hash note_hash
 
   end
+
 
   def handle_subtasks subtasks_array
 

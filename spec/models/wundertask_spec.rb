@@ -41,6 +41,33 @@ RSpec.describe Wundertask, type: :model do
     end
   end
 
+  describe 'handle_notes' do
+    let(:task) { FactoryBot.create(:wundertask) }
+
+    context 'has 0 notes' do
+      it 'does not try to create a note' do
+        expect_any_instance_of(Wundertask).to_not receive(:note_from_hash)
+        task.handle_notes []
+      end
+    end
+
+    context 'has 1 notes' do
+      it 'tries to create 1 note' do
+        expect_any_instance_of(Wundertask).to receive(:note_from_hash).exactly(1).time
+        task.handle_notes [{}]
+      end
+    end
+
+    context 'has 2 notes' do
+      it 'tries to create 2 notes' do
+        count = 0
+        allow_any_instance_of(Wundertask).to receive(:note_from_hash) { count += 1 }
+        task.handle_notes [{},{}]
+        expect(count).to eq( 2 )
+      end
+    end
+  end
+
 
 
 
