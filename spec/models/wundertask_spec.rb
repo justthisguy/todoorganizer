@@ -101,6 +101,34 @@ RSpec.describe Wundertask, type: :model do
     end
   end
 
+  describe 'handle_subtasks' do
+    let(:task) { FactoryBot.create(:wundertask) }
+
+    context 'has 0 subtasks' do
+      it 'does not try to create a subtask' do
+        expect_any_instance_of(Wundersubtask).to_not receive(:from_hash)
+        task.handle_subtasks []
+      end
+    end
+
+    context 'has 1 subtasks' do
+      it 'tries to create 1 subtask' do
+        expect_any_instance_of(Wundersubtask).to receive(:from_hash).exactly(1).time
+        task.handle_subtasks [{}]
+      end
+    end
+
+    context 'has 2 subtasks' do
+      it 'tries to create 2 subtasks' do
+        count = 0
+        allow_any_instance_of(Wundersubtask).to receive(:from_hash) { count += 1 }
+        task.handle_subtasks [{},{}]
+        expect(count).to eq( 2 )
+      end
+    end
+  end
+
+
 
 
 

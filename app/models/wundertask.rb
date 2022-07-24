@@ -30,7 +30,11 @@ class Wundertask < ApplicationRecord
 
 
   def handle_subtasks subtasks_array
+    return if subtasks_array.empty?
 
+    subtasks_array.each do |subtask_hash|
+      self.wundersubtasks.new.from_hash subtask_hash
+    end
   end
 
   def handle_files files_array
