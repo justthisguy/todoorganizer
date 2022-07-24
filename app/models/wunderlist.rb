@@ -7,6 +7,8 @@ class Wunderlist < ApplicationRecord
     self.title = source[:title]
     self.createdAt = DateTime.parse source[:createdAt]
     self.save
+
+    handle_tasks source[:tasks]
     self
   end
 

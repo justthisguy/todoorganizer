@@ -27,6 +27,16 @@ RSpec.describe Wunderlist, type: :model do
         expect(list.createdAt).to eq(hash_list[:createdAt])
       end
     end
+
+    context 'tasks' do
+      let(:list) { Wunderlist.new }
+      let(:hash_list) { { "id": 34496580, "title": "7 Stills", "folder": nil, "tasks": [], "directoryPath": "7 Stills", "textFilePath": "7 Stills/7 Stills.txt", "htmlFilePath": "7 Stills/7 Stills.html", "createdAt": "2012-12-06T04:51:13.98Z" } }
+
+      it 'processes tasks' do
+        expect_any_instance_of(Wunderlist).to receive(:handle_tasks).exactly(1).time
+        list.from_hash hash_list
+      end
+    end
   end
 
   describe 'create_from_hash' do
@@ -34,8 +44,7 @@ RSpec.describe Wunderlist, type: :model do
       let(:hash_list) { { "id": 34496580, "title": "7 Stills", "folder": nil, "tasks": [], "directoryPath": "7 Stills", "textFilePath": "7 Stills/7 Stills.txt", "htmlFilePath": "7 Stills/7 Stills.html", "createdAt": "2012-12-06T04:51:13.98Z" } }
 
       it 'does not try to create one' do
-        folder = double("Wunderfolder")
-        expect(folder).not_to receive(:find_or_create)
+        expect(Wunderfolder).to receive(:find_or_create).exactly(1).time
         Wunderlist.create_from_hash hash_list
       end
 
