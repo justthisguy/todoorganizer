@@ -80,7 +80,7 @@ RSpec.describe Wunderlist, type: :model do
       let(:list) { FactoryBot.create(:wunderlist) }
       it 'tries to create 2 tasks' do
         count = 0
-        Wundertask.any_instance.stub(:from_hash) { count+=1 }
+        allow_any_instance_of(Wundertask).to receive(:from_hash) { count += 1 }
         list.handle_tasks [{},{}]
         expect(count).to eq( 2 )
       end
