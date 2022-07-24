@@ -127,10 +127,4 @@ RSpec.describe Wundertask, type: :model do
       end
     end
   end
-
-
-
-
-
-
 end
