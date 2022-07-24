@@ -3,7 +3,7 @@ class CreateWundertasks < ActiveRecord::Migration[6.1]
     create_table :wundertasks do |t|
       t.belongs_to :wunderlist, null: false, foreign_key: true
 
-      t.string   :original_id
+      t.integer  :original_id
       t.string   :title
       t.boolean  :completed
       t.boolean  :starred

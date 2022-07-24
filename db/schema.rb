@@ -69,7 +69,7 @@ ActiveRecord::Schema.define(version: 2021_12_10_025544) do
 
   create_table "wundertasks", force: :cascade do |t|
     t.bigint "wunderlist_id", null: false
-    t.string "original_id"
+    t.integer "original_id"
     t.string "title"
     t.boolean "completed"
     t.boolean "starred"
