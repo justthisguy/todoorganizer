@@ -8,7 +8,7 @@ class Wunderlist < ApplicationRecord
     self.createdAt = DateTime.parse source[:createdAt]
     self.save
 
-    handle_tasks source[:tasks]
+    self.handle_tasks source[:tasks]
     self
   end
 
@@ -23,9 +23,19 @@ class Wunderlist < ApplicationRecord
 
   def self.create_from_hash source
     folder = Wunderfolder.find_or_create source[:folder]
-    list = folder.nil? ? Wunderlist.new : folder.wunderlists.new
+    list = folder.wunderlists.new
     list.from_hash source
     list
+  end
+
+  def self.setup
+    Wunderfolder.create title: 'null' # all lists need a folder
+    file   = File.open( "../wundertasks.json" )
+    wunder = Psych.safe_load( file, symbolize_names: true )
+
+    wunder.each do |list_hash|
+      Wunderlist.create_from_hash list_hash
+    end
   end
 end
 

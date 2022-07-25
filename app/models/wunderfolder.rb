@@ -7,6 +7,7 @@ class Wunderfolder < ApplicationRecord
     self.createdAt = DateTime.parse source[:createdAt]
     self.updatedAt = DateTime.parse source[:updatedAt]
     self.save
+    self
   end
 
 
@@ -16,7 +17,7 @@ class Wunderfolder < ApplicationRecord
   # is contained as array of the containing object.
   ###
   def self.find_or_create source
-    return nil if source.nil?
+    return Wunderfolder.where( title: 'null' ).first if source.nil?
 
     folder = Wunderfolder.where( title: source[:title] ).first
     if folder.nil?
