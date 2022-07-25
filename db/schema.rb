@@ -45,7 +45,7 @@ ActiveRecord::Schema.define(version: 2021_12_10_025544) do
 
   create_table "wunderlists", force: :cascade do |t|
     t.bigint "wunderfolder_id", null: false
-    t.integer "original_id"
+    t.bigint "original_id"
     t.string "title"
     t.string "directory_path"
     t.string "text_file_path"
@@ -69,7 +69,7 @@ ActiveRecord::Schema.define(version: 2021_12_10_025544) do
 
   create_table "wundertasks", force: :cascade do |t|
     t.bigint "wunderlist_id", null: false
-    t.integer "original_id"
+    t.bigint "original_id"
     t.string "title"
     t.boolean "completed"
     t.boolean "starred"
