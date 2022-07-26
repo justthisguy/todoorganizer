@@ -12,6 +12,7 @@ class Wundertask < ApplicationRecord
     self.save
 
     self.handle_subtasks source[:subtasks]
+    self.handle_notes    source[:notes]
     self
   end
 
@@ -25,8 +26,9 @@ class Wundertask < ApplicationRecord
 
   def note_from_hash note_hash
     return false if note_hash.empty?
-    return false if note_hash[:content].empty?
+    return false if note_hash[:content].lstrip.empty?
     self.notes << note_hash[:content]
+    self.save
   end
 
   def handle_subtasks subtasks_array

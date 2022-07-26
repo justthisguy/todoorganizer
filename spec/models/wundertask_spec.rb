@@ -51,6 +51,16 @@ RSpec.describe Wundertask, type: :model do
       end
     end
 
+    context 'notes' do
+      let(:task) { Wundertask.new }
+      let(:hash_task) { { "id": 4158461911, "title": "vinegar", "completed": true, "starred": false, "subtasks": [], "notes": [], "comments": [], "reminders": [], "files": [], "assignee": nil, "dueDate": nil, "createdAt": "2018-08-25T01:34:54.968Z", "createdBy": { "id": 1344494, "name": "wunderlist@justthisguy.org", "email": "wunderlist@justthisguy.org", "createdAt": "2011-10-04T03:16:24Z" }, "completedAt": "2019-07-05T21:47:57.425Z", "completedBy": { "id": 1344494, "name": "wunderlist@justthisguy.org", "email": "wunderlist@justthisguy.org", "createdAt": "2011-10-04T03:16:24Z" } } }
+
+      it 'processes tasks' do
+        expect_any_instance_of(Wundertask).to receive(:handle_notes).exactly(1).time
+        task.from_hash hash_task
+      end
+    end
+
   end
 
   describe 'handle_notes' do
