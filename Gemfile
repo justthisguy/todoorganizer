@@ -39,7 +39,7 @@ end
 
 group :development, :test do
 #   gem 'awesome_print', :require => 'ap'
-  gem 'bullet'
+  gem 'bullet' # watches your queries during development and gives advice
   gem 'factory_bot_rails'
   gem 'pry-byebug'
   gem 'pry-rails'           # rails console to open pry
