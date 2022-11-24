@@ -235,6 +235,7 @@ GEM
     shellany (0.0.1)
     shoulda-matchers (5.0.0)
       activesupport (>= 5.2.0)
+    smarter_csv (1.7.2)
     spring (2.1.1)
     spring-commands-cucumber (1.0.1)
       spring (>= 0.9.1)
@@ -308,6 +309,7 @@ DEPENDENCIES
   rails-controller-testing
   rspec-rails (~> 5.0.2)
   shoulda-matchers (~> 5.0)
+  smarter_csv
   spring
   spring-commands-cucumber
   spring-commands-rspec

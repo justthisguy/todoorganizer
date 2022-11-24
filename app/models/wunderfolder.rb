@@ -6,7 +6,7 @@ class Wunderfolder < ApplicationRecord
     self.directory_path = source[:directoryPath]
     self.createdAt = DateTime.parse source[:createdAt]
     self.updatedAt = DateTime.parse source[:updatedAt]
-    self.save
+    self.save!
     self
   end
 

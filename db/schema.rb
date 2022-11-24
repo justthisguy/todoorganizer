@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2021_12_10_025544) do
+ActiveRecord::Schema.define(version: 2022_11_21_210327) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -81,7 +81,52 @@ ActiveRecord::Schema.define(version: 2021_12_10_025544) do
     t.index ["wunderlist_id"], name: "index_wundertasks_on_wunderlist_id"
   end
 
+  create_table "zenkitfolders", force: :cascade do |t|
+    t.string "title"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+  end
+
+  create_table "zenkitlists", force: :cascade do |t|
+    t.bigint "zenkitfolder_id", null: false
+    t.string "title"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["zenkitfolder_id"], name: "index_zenkitlists_on_zenkitfolder_id"
+  end
+
+  create_table "zenkitsubtasks", force: :cascade do |t|
+    t.bigint "zenkittask_id", null: false
+    t.string "title"
+    t.boolean "done"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["zenkittask_id"], name: "index_zenkitsubtasks_on_zenkittask_id"
+  end
+
+  create_table "zenkittasks", force: :cascade do |t|
+    t.bigint "zenkitlist_id", null: false
+    t.string "title"
+    t.string "stage"
+    t.string "due_date"
+    t.string "notes"
+    t.string "files"
+    t.string "assigned_to"
+    t.datetime "created"
+    t.datetime "last_updated"
+    t.string "created_by"
+    t.string "last_updated_by"
+    t.string "checklists"
+    t.string "comments"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["zenkitlist_id"], name: "index_zenkittasks_on_zenkitlist_id"
+  end
+
   add_foreign_key "wunderlists", "wunderfolders"
   add_foreign_key "wundersubtasks", "wundertasks"
   add_foreign_key "wundertasks", "wunderlists"
+  add_foreign_key "zenkitlists", "zenkitfolders"
+  add_foreign_key "zenkitsubtasks", "zenkittasks"
+  add_foreign_key "zenkittasks", "zenkitlists"
 end

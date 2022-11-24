@@ -1,9 +1,7 @@
 require 'rails_helper'
 
 RSpec.describe Wunderfolder, type: :model do
-  describe 'associations' do
     it { should have_many(:wunderlists) }
-  end
 
   describe 'from hash' do
     let(:hash_folder) { {"title": "the title", "directoryPath": "the directory path", "createdAt": "2016-12-19T18:15:51.952Z", "updatedAt": "2019-08-18T03:48:55.746Z"} }

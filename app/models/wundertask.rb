@@ -9,7 +9,7 @@ class Wundertask < ApplicationRecord
     self.starred     = source[:starred]
     self.createdAt   = DateTime.parse source[:createdAt]
     self.completedAt = source[:completedAt].nil? ? nil : (DateTime.parse source[:completedAt])
-    self.save
+    self.save!
 
     self.handle_subtasks source[:subtasks]
     self.handle_notes    source[:notes]
@@ -28,7 +28,7 @@ class Wundertask < ApplicationRecord
     return false if note_hash.empty?
     return false if note_hash[:content].lstrip.empty?
     self.notes << note_hash[:content]
-    self.save
+    self.save!
   end
 
   def handle_subtasks subtasks_array

@@ -6,7 +6,7 @@ class Wundersubtask < ApplicationRecord
     self.completed = source[:completed]
     self.createdAt = DateTime.parse source[:createdAt]
     self.completedAt = source[:completedAt].nil? ? nil : (DateTime.parse source[:completedAt])
-    self.save
+    self.save!
     self
   end
 end

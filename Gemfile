@@ -17,6 +17,9 @@ gem 'jbuilder', '~> 2.7'
 gem 'uglifier', '>= 1.3.0'
 gem 'webpacker', '~> 5.0'
 
+### utils
+gem 'smarter_csv'
+
 
 group :development do
   gem 'active_record_query_trace'
