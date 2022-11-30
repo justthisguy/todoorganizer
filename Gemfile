@@ -1,16 +1,17 @@
 source 'https://rubygems.org'
 git_source(:github) { |repo| "https://github.com/#{repo}.git" }
 
-ruby '3.0.3'
+ruby '3.1.2'
 
 ### core
 gem 'rails', '~> 6.1.4', '>= 6.1.4.1'
-gem 'puma', '~> 5.0'
-gem 'bootsnap', '>= 1.4.4', require: false
+gem 'puma', '~> 5.0' # 6.0
+gem 'bootsnap', '>= 1.15.0', require: false
+gem 'net-smtp',             require: false
 
 
 ### data
-gem 'pg', '~> 1.1'
+gem 'pg', '~> 1.1' # 1.4.5
 
 ### js
 gem 'jbuilder', '~> 2.7'
